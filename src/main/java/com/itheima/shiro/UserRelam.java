@@ -38,12 +38,10 @@ public class UserRelam  extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		System.err.println( "执行认证的逻辑 ");
-		
 		/*//假设数据库的用户名和密码
 		String name = "eric";
 		String password = "123456";*/
 
-		
 		//编写shiro判断逻辑，判断用户名和密码
 		//1，判单用户名
 		UsernamePasswordToken tokens = (UsernamePasswordToken) token;

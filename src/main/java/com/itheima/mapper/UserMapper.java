@@ -10,8 +10,5 @@ import com.itheima.domain.User;
  * @date 2020/3/1311:17
  */
 public interface UserMapper {
-
     public User findByName(String name);
-
-
 }
