@@ -42,6 +42,11 @@ public class UserController {
 		return "/login";
 	}
 
+	@RequestMapping("/noAuth")
+	public String noAuth(){
+		return "/noAuth";
+	}
+
 	
 	@RequestMapping("/testThymeleaf")
 	public String testThymeleaf(Model model){
