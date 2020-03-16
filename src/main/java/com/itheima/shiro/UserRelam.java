@@ -8,6 +8,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,13 @@ public class UserRelam  extends AuthorizingRealm{
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		System.err.println("执行授权逻辑");
-		return null;
+
+		//给资源进行授权
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+        info.addStringPermission("user:add");  //	 与这里的一致才行  filterMap.put("/add","perms[user:add]");
+
+		return info;
 	}
 
 	
