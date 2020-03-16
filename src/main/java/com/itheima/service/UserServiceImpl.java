@@ -24,4 +24,9 @@ public class UserServiceImpl  implements  UserService{
         System.err.println(name);
         return byName;
     }
+
+    @Override
+    public User findById(Integer id) {
+        return userMapper.findById(id);
+    }
 }

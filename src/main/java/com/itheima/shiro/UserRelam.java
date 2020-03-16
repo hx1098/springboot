@@ -2,6 +2,7 @@ package com.itheima.shiro;
 
 import com.itheima.domain.User;
 import com.itheima.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,7 +35,15 @@ public class UserRelam  extends AuthorizingRealm{
 		//给资源进行授权
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        info.addStringPermission("user:add");  //	 与这里的一致才行  filterMap.put("/add","perms[user:add]");
+//        info.addStringPermission("user:add");  //	 与这里的一致才行  filterMap.put("/add","perms[user:add]");
+
+
+		Subject subject = SecurityUtils.getSubject();
+		User user = (User) subject.getPrincipal();
+		User byId = userService.findById(user.getId());
+
+		//获取数据库中的权限
+		info.addStringPermission(byId.getPerms());
 
 		return info;
 	}
@@ -60,7 +70,7 @@ public class UserRelam  extends AuthorizingRealm{
 
 
 
-		return new SimpleAuthenticationInfo("",user.getPassword(),"");
+		return new SimpleAuthenticationInfo(user,user.getPassword(),"");
 	}
 
 

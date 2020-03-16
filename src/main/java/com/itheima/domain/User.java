@@ -11,6 +11,15 @@ public class User {
     private Integer id;
     private String name;
     private String password;
+    private String perms;
+
+    public void setPerms(String perms) {
+        this.perms = perms;
+    }
+
+    public String getPerms() {
+        return perms;
+    }
 
     public Integer getId() {
         return id;

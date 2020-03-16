@@ -51,6 +51,7 @@ public class ShiroConfig {
 		//授权拦截器
 		//注意:当前授权拦截后，shiro会自动	跳转到未授权的页面
 		filterMap.put("/add","perms[user:add]");//这里的put先后顺序位置不能放错
+		filterMap.put("/update","perms[user:update]");
 
 		filterMap.put("/login", "anon");
 		//所哟的都需要权限进行访问
